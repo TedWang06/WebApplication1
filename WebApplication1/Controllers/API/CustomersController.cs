@@ -4,15 +4,24 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebApplication.Services;
 
 namespace WebApplication1.Controllers.API
 {
     public class CustomersController : ApiController
     {
-        // GET: api/Customers
-        public IEnumerable<string> Get()
+        private readonly CustomerService _service;
+
+        public CustomersController()
         {
-            return new string[] { "value1", "value2" };
+            _service = new CustomerService();
+        }
+
+        // GET: api/Customers
+        public IHttpActionResult Get()
+        {
+            var data = _service.GetCustomer();
+            return Ok(data);
         }
 
         // GET: api/Customers/5

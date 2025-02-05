@@ -6,7 +6,36 @@
     <script src="~/js/main.js"></script>
 }
 
-<div id="app">
-    {{ message }}
+<style type="text/css">
+    .table thead tr  {
+        background-color:antiquewhite;
+    }
+
+</style>
+
+<div id="app">  
+    Customers
+    <table class="table">
+        <thead>
+            <tr>
+                <td>CompanyName</td>
+                <td>ContactName</td>
+                <td>ContactTitle</td>
+                <td>Address</td>
+                <td>City</td>
+                <td>編輯</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for=" item in customers">
+                <td>{{item.CompanyName}}</td>
+                <td>{{item.ContactName}}</td>
+                <td>{{item.ContactTitle}}</td>
+                <td>{{item.Address}}</td>
+                <td>{{item.City}}</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>   
 </div>
 

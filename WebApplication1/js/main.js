@@ -7,11 +7,14 @@
         const VueApp = {
             data() {
                 return {
-                    message: ' Vue!'
+                    message: ' Vue!',
+                    customers : []
                 }
             },
             mounted() {
-                getInitData();
+                getInitData().then( ( result )  => {
+                    this.customers = result;
+                } );                
             }
         }
 
@@ -19,10 +22,9 @@
     }
 
     async function getInitData() {
-        debugger;
         try {
             const response = await axios.get( 'api/Customers' );
-            debugger;
+            return response.data;
         }
         catch ( e ) {
             alert( 'get data error' );
