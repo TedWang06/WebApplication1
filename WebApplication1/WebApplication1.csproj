@@ -223,6 +223,10 @@
     <Content Include="Scripts\jquery-3.7.0.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WebApplication.DataModel\WebApplication.DataModel.csproj">
+      <Project>{AA65D7BE-948F-45E4-8F5F-FEB5BC154D66}</Project>
+      <Name>WebApplication.DataModel</Name>
+    </ProjectReference>
     <ProjectReference Include="..\WebApplication.Services\WebApplication.Services.csproj">
       <Project>{57E94328-D353-4754-B1DE-0BB5BF03763B}</Project>
       <Name>WebApplication.Services</Name>

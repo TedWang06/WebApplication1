@@ -7,15 +7,36 @@
 }
 
 <style type="text/css">
-    .table thead tr  {
-        background-color:antiquewhite;
+    .table thead tr {
+        background-color: antiquewhite;
+        text-align: center;
+    }
+
+    .table tbody td {
+        padding: 5px;
+    }
+
+    .table tbody tr:nth-child(odd) {
+        background-color: lightsteelblue;
+    }
+
+    .editContent .content .row {
+        display: flex;
+        padding: 10px 0px;
+    }
+
+    .editContent .content .title {
+        width:150px;
+    }
+
+    .editContent > div {
+        padding: 10px;
     }
 
 </style>
 
 <div id="app">  
-    Customers
-    <table class="table">
+    <table class="table" v-show="!isEdit">
         <thead>
             <tr>
                 <td>CompanyName</td>
@@ -23,19 +44,49 @@
                 <td>ContactTitle</td>
                 <td>Address</td>
                 <td>City</td>
-                <td>編輯</td>
+                <td>動作</td>
             </tr>
         </thead>
         <tbody>
-            <tr v-for=" item in customers">
+            <tr v-for=" item in customers" :key="item.CustomerId">
                 <td>{{item.CompanyName}}</td>
                 <td>{{item.ContactName}}</td>
                 <td>{{item.ContactTitle}}</td>
                 <td>{{item.Address}}</td>
                 <td>{{item.City}}</td>
-                <td></td>
+                <td>
+                    <button v-on:click="editButton(item)">編輯</button>
+                    <button v-on:click="deleteButton(item)">刪除</button>
+                </td>
             </tr>
         </tbody>
-    </table>   
+    </table> 
+    
+    <div v-show="isEdit" class="editContent">
+        <div>
+            編輯Customers
+        </div>
+        <div class="content">
+            <div class="row">
+                <div class="title">CompanyName</div><input type="text" v-model="editItem.CompanyName" />
+            </div>
+            <div class="row">
+                <div class="title">ContactName</div><input type="text" v-model="editItem.ContactName" />
+            </div>
+            <div class="row">
+                <div class="title">ContactTitle</div><input type="text" v-model="editItem.ContactTitle" />
+            </div>
+            <div class="row">
+                <div class="title">Address</div><input type="text" v-model="editItem.Address" />
+            </div>
+            <div class="row">
+                <div class="title">City</div><input type="text" v-model="editItem.City" />
+            </div>
+        </div>
+        <div class="footer">
+            <button v-on:click="isEdit=false">取消</button>&nbsp;
+            <button v-on:click="saveButton">確認</button>
+        </div>
+    </div>
 </div>
 

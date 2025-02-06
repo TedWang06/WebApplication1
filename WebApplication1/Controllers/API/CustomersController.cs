@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WebApplication.DataModel;
 using WebApplication.Services;
 
 namespace WebApplication1.Controllers.API
@@ -24,25 +25,25 @@ namespace WebApplication1.Controllers.API
             return Ok(data);
         }
 
-        // GET: api/Customers/5
-        public string Get(int id)
+
+        [HttpPost]
+        [Route("api/Customers/DeleteCustomer")]
+
+        public IHttpActionResult DeleteCustomer([FromBody] string id)
         {
-            return "value";
+            var result = _service.DeleteCustomer(id);
+            return Ok(result );
         }
 
-        // POST: api/Customers
-        public void Post([FromBody]string value)
+        [HttpPost]
+        [Route("api/Customers/EditCustomer")]
+
+        public IHttpActionResult EditCustomer(Customer data)
         {
+            var result = _service.EditCustomer(data);
+            return Ok(result);
         }
 
-        // PUT: api/Customers/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
 
-        // DELETE: api/Customers/5
-        public void Delete(int id)
-        {
-        }
     }
 }
