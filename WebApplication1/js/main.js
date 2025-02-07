@@ -45,19 +45,32 @@
 
     function deleteButton( item ) {
         const vm = this;
-        if ( confirm( '確認刪除' + item.CompanyName + '?' ) ) {        
-            axios( {
-                method: 'post',
-                url: 'api/Customers/DeleteCustomer',
-                data: JSON.stringify( item.CustomerId ),
-                headers: { 'Content-Type': 'application/json' } 
-            } ).then( response => {
-                if ( response.data == - 1 ) {
+        if ( confirm( '確認刪除' + item.CompanyName + '?' ) ) {     
+
+            axios.delete( `api/Customers/${item.CustomerId}` )
+                .then( response => {
                     alert( '刪除成功' );
                     //畫面處理/資料重撈
                     vm.resetData();
-                }
-            } )
+                    console.log( response.data )
+                } )
+                .catch( error => {
+                    alert( '刪除錯誤' );
+                    console.error( error )
+                } );
+
+            //axios( {
+            //    method: 'post',
+            //    url: 'api/Customers/DeleteCustomer',
+            //    data: JSON.stringify( item.CustomerId ),
+            //    headers: { 'Content-Type': 'application/json' } 
+            //} ).then( response => {
+            //    if ( response.data == - 1 ) {
+            //        alert( '刪除成功' );
+            //        //畫面處理/資料重撈
+            //        vm.resetData();
+            //    }
+            //} )
         }
     }
 

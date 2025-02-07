@@ -25,15 +25,21 @@ namespace WebApplication1.Controllers.API
             return Ok(data);
         }
 
-
-        [HttpPost]
-        [Route("api/Customers/DeleteCustomer")]
-
-        public IHttpActionResult DeleteCustomer([FromBody] string id)
+        public IHttpActionResult DELETE(string id)
         {
             var result = _service.DeleteCustomer(id);
-            return Ok(result );
+            return Ok(result);
         }
+
+
+        //[HttpPost]
+        //[Route("api/Customers/DeleteCustomer")]
+
+        //public IHttpActionResult DeleteCustomer([FromBody] string id)
+        //{
+        //    var result = _service.DeleteCustomer(id);
+        //    return Ok(result );
+        //}
 
         [HttpPost]
         [Route("api/Customers/EditCustomer")]
@@ -42,7 +48,7 @@ namespace WebApplication1.Controllers.API
         {
             var result = _service.EditCustomer(data);
             return Ok(result);
-        }
+        }    
 
 
     }
